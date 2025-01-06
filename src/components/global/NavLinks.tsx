@@ -1,8 +1,8 @@
-import { Route } from "@/interfaces";
-import { IoMdHome, IoIosListBox, IoMdCalendar } from "react-icons/io";
-import { IoChatboxEllipses } from "react-icons/io5";
-import { NavLink } from "react-router";
 import clsx from "clsx";
+import { NavLink } from "react-router";
+import { IoMdHome, IoIosListBox, IoIosCalendar } from "react-icons/io";
+import { IoChatboxEllipses } from "react-icons/io5";
+import type { Route } from "@/interfaces";
 
 const routes: Route[] = [{
   label: 'Inicio',
@@ -17,7 +17,7 @@ const routes: Route[] = [{
 {
   label: 'Eventos',
   path: '/events',
-  icon: IoMdCalendar
+  icon: IoIosCalendar
 },
 {
   label: 'Opiniones',
@@ -31,7 +31,7 @@ interface Props {
 
 export function NavLinks({ isOpen }: Props) {
   return (
-    <ul className="flex flex-col p-5 h-full w-full space-y-2 transition-all duration-75">
+    <ul className="p-5 h-full space-y-2 transition-all">
         {
           routes.map((route) => {
             const LinkIcon = route.icon;
@@ -39,7 +39,7 @@ export function NavLinks({ isOpen }: Props) {
             return (
               <NavLink to={route.path}
                 className={({ isActive }) => clsx(
-                  'inline-flex gap-2 p-4 items-center text-xl rounded-md', 
+                  'inline-flex w-full gap-2 p-4 items-center text-xl rounded-md', 
                   {
                     'bg-red-400 bg-opacity-30 text-red-400 w-full' : isActive,
                     'hover:bg-secondary' : !isActive
@@ -50,7 +50,7 @@ export function NavLinks({ isOpen }: Props) {
 
                 {
                   isOpen && (
-                    <span className='flex'>
+                    <span className='overflow-hidden'>
                       { route.label }
                     </span>
                   )

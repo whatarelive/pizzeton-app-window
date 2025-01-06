@@ -26,7 +26,7 @@ export function SideMenu() {
             
             {
               isOpen && (
-                <span className="text-xl text-nowrap text-red-400 font-semibold">
+                <span className="text-xl text-nowrap text-red-400 font-semibold overflow-hidden">
                   Pizzeton D&apos;Gutí
                 </span>
               )
@@ -54,7 +54,7 @@ export function SideMenu() {
 
           {
             isOpen && (
-              <div className="py-1">
+              <div className="py-1 overflow-hidden">
                 <p className="text-lg text-nowrap font-semibold mb-2">
                   Debren Gutierrez
                 </p>
