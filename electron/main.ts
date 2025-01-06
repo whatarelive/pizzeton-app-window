@@ -24,19 +24,21 @@ export const RENDERER_DIST = path.join(process.env.APP_ROOT, 'dist')
 
 process.env.VITE_PUBLIC = VITE_DEV_SERVER_URL ? path.join(process.env.APP_ROOT, 'public') : RENDERER_DIST
 
-let win: BrowserWindow | null
+export let win: BrowserWindow | null
 
 function createWindow() {
   win = new BrowserWindow({
-    icon: path.join(process.env.VITE_PUBLIC, 'electron-vite.svg'),
-    height: 720,
+    icon: path.join(process.env.VITE_PUBLIC, 'logo.svg'),
     minHeight: 720,
-    maxHeight: 1080,
-    width: 720,
+    // maxHeight: 1080,
     minWidth: 1280,
-    maxWidth: 1920,
+    // maxWidth: 1920,
+    width: 1280,
+    height: 720,
+    paintWhenInitiallyHidden: false,
+    // titleBarStyle: "hidden", 
     center: true,
-    paintWhenInitiallyHidden: true,
+    resizable: false,
     autoHideMenuBar: true,
     webPreferences: {
       preload: path.join(__dirname, 'preload.mjs'),
@@ -44,9 +46,9 @@ function createWindow() {
   })
 
   // Test active push message to Renderer-process.
-  win.webContents.on('did-finish-load', () => {
-    win?.webContents.send('main-process-message', (new Date).toLocaleString())
-  })
+  // win.webContents.on('did-finish-load', () => {
+  //   win?.webContents.send('main-process-message', (new Date).toLocaleString())
+  // })
 
   if (VITE_DEV_SERVER_URL) {
     win.loadURL(VITE_DEV_SERVER_URL)
