@@ -5,6 +5,8 @@ interface Props {
 
 export function NavLinks({ isOpen }: Props) {
   return (
-    <div>NavLinks</div>
+    <ul>
+      
+    </ul>
   )
 }
