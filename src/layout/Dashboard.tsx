@@ -3,7 +3,7 @@ import { SideMenu } from "@/components/global/SideMenu";
 
 export default function Dashboard() {
   return (
-    <main className="flex h-screen w-full">
+    <main className="inline-flex min-h-screen w-full">
       <SideMenu/>
 
       <section className="w-full">

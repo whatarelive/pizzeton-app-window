@@ -36,7 +36,7 @@ export function SideMenu() {
         {/* Open Menú Button */}
         <div className="relative left-5 mb-5 inline-flex items-center justify-center">
           <p className="text-lg font-semibold text-gray-200 w-full">
-            Men
+            Menú
           </p>
 
           <button className="p-1 bg-window rounded-full hover:bg-red-500 transition-all" onClick={change}>

@@ -29,12 +29,14 @@ let win: BrowserWindow | null
 function createWindow() {
   win = new BrowserWindow({
     icon: path.join(process.env.VITE_PUBLIC, 'electron-vite.svg'),
+    height: 720,
     minHeight: 720,
-    minWidth: 1280,
     maxHeight: 1080,
+    width: 720,
+    minWidth: 1280,
     maxWidth: 1920,
     center: true,
-    fullscreenable: false,
+    paintWhenInitiallyHidden: true,
     autoHideMenuBar: true,
     webPreferences: {
       preload: path.join(__dirname, 'preload.mjs'),
