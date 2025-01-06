@@ -1,19 +1,12 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import { HashRouter, Route, Routes } from 'react-router'
-import AppReact from './AppReact.tsx'
-import AppVite from './AppVite.tsx'
-import './index.css'
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import { App } from "@/App";
+import "@/styles/index.css";
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <HashRouter>
-      <Routes>
-        <Route path='/' element={<AppVite/>}/>
-        <Route path='/react' element={<AppReact/>}/>
-      </Routes>
-    </HashRouter>
-  </React.StrictMode>,
+createRoot(document.getElementById('root')!).render(
+  <StrictMode>
+    <App/>
+  </StrictMode>,
 )
 
 // Use contextBridge
