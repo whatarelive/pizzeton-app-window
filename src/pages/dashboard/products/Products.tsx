@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
 import { Table, TableCaption, TableHeader, TableRow, TableHead, TableBody, TableCell, TableFooter } from "@/components/ui/table";
-import { IoIosListBox } from "react-icons/io";
+import { IoIosListBox, IoIosSearch, IoIosAdd, IoIosSwap, IoMdFunnel } from "react-icons/io";
 
 const invoices = [
   {
@@ -51,25 +51,35 @@ const invoices = [
 
 export default function Products() {
   return (
-    <div className="flex flex-col px-12 py-10">
+    <div className="flex flex-col px-16 py-10">
       {/* Toolbar */}
-      <div className="inline-flex">
+      <div className="inline-flex justify-evenly">
+
         {/* Title */}
-        <div className="inline-flex">
-          <IoIosListBox size={30} color="#333"/>
-          <h1 className="text-p_gray_900">
+        <div className="inline-flex flex-1 gap-2 items-end">
+          <IoIosListBox size={32} color="#333"/>
+          <h1 className="text-p_gray_900 font-bold text-lg">
             Productos
           </h1>
         </div>
 
-        {/* Input Search */}
-        <Input/>
+        <div className="flex flex-0 min-w-[405px] justify-between">
+          {/* Input Search */}
+          <Input type="text" placeholder="¿Qué estás buscando?" className="items-center gap-2 w-[235px] h-10">
+            <IoIosSearch size={24} color="#333" className="min-w-6"/>
+          </Input>
 
-        {/* Buttons Menu */}
-        <div className="inline-flex">
-          <Button> | </Button>
-          <Button> - </Button>
-          <Button> + </Button>
+          <Button size="icon" variant="outline">
+            <IoIosSwap size={20} color="#333" className="rotate-90"/>
+          </Button>
+
+          <Button size="icon" variant="outline">
+            <IoMdFunnel size={20} color="#333"/>
+          </Button>
+          
+          <Button size="icon" variant="destructive" className="hover:text-p_rose_600">
+            <IoIosAdd size={28} className="min-w-[28px]"/>
+          </Button>
         </div>
       </div>
 
