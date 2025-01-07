@@ -64,7 +64,7 @@ export function SideMenu() {
         {/* User Config */}
         {/* TODO: falta recuperar la sesión del usuario para obtener el nombre */}
         <NavLink to="/config" className="flex mb-6 gap-3 py-1 justify-center px-5 items-end z-10">
-          <IoMdPerson className="bg-gray-200 min-w-[48px] text-window rounded-full p-1.5" size={48}/>
+          <IoMdPerson className="bg-gray-200 min-w-[44px] text-p_gray_900 rounded-full p-1.5" size={50}/>
 
           {
             isOpen && (
