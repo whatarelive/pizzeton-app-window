@@ -11,55 +11,69 @@ export function SideMenu() {
   return (
     <section 
       className={clsx(
-        `flex flex-col justify-start py-4 bg-window transition-all duration-700`,
+        `flex flex-col justify-start bg-p_gray_900 bg-blend-normal transition-all duration-700`,
         {
-          'w-[300px]' : isOpen,
+          'w-[295px]' : isOpen,
           'w-[100px]' : !isOpen 
         }
       )}
     >
         {/* Header */}
-        <div className="inline-flex p-4 mb-3 gap-3 items-center justify-center">
-            <div className="min-w-[50px]">
-              <Logo color="#ef4444"/>
-            </div>
+        <div className="inline-flex mt-[45px] gap-3 items-center justify-center">
+            <Logo color="#e2583a"/>
             
             {
               isOpen && (
-                <span className="text-xl text-nowrap text-red-400 font-semibold overflow-hidden">
-                  Pizzeton D&apos;Gutí
+                <span className="text-lg text-nowrap text-p_rose_600 font-bold overflow-hidden">
+                  Pizzetón D&apos;Gutí
                 </span>
               )
             }
         </div>
-
+        
         {/* Open Menú Button */}
-        <div className="relative left-5 mb-5 inline-flex items-center justify-center">
-          <p className="text-lg font-semibold text-gray-200 w-full">
+        <IoIosArrowForward size={40} onClick={change} 
+          className={clsx(
+            'absolute top-[99px] p-2 rounded-full text-white bg-p_gray_900 hover:bg-p_rose_600 hover:shadow-sm hover:shadow-p_gray_600 transition-all duration-[600ms]',
+            {
+              'rotate-180 left-[220px]' : isOpen, 
+              'left-[75px]' : !isOpen
+            }
+          )}
+        />
+
+        {/* Navigation Links */}
+        <div className="h-full mt-8 px-4">
+          <p className={clsx(
+              "mb-5 font-bold text-p_gray_400 transition-all duration-1000", 
+              { 
+                'text-start' : isOpen, 
+                'text-center' : !isOpen
+              }
+            )}
+          >
             Menú
           </p>
 
-          <button className="p-1 bg-window rounded-full hover:bg-red-500 transition-all" onClick={change}>
-            <IoIosArrowForward size={32} color="#fff" className={clsx({'rotate-180 transition-all duration-700': isOpen })}/>
-          </button>
+          <NavLinks isOpen={isOpen}/>
         </div>
 
-        {/* Navigation Links */}
-        <NavLinks isOpen={isOpen}/>
+        {/* Decoration */}
+        <span className="absolute bottom-0 left-0 w-[100px] h-[100px] opacity-30 bg-p_rose_600 blur-xl"/>
 
         {/* User Config */}
         {/* TODO: falta recuperar la sesión del usuario para obtener el nombre */}
-        <NavLink to="/config" className="flex gap-3 py-1 justify-center px-5 items-end">
+        <NavLink to="/config" className="flex mb-6 gap-3 py-1 justify-center px-5 items-end z-10">
           <IoMdPerson className="bg-gray-200 min-w-[48px] text-window rounded-full p-1.5" size={48}/>
 
           {
             isOpen && (
               <div className="py-1 overflow-hidden">
-                <p className="text-lg text-nowrap font-semibold mb-2">
+                <p className="mb-1 text-nowrap overflow-hidden">
                   Debren Gutierrez
                 </p>
                 
-                <span className="text-red-400 text-sm font-medium border-2 border-red-400 bg-red-400 bg-opacity-25 rounded-full py-0.5 px-1.5">
+                <span className="text-p_rose_300 text-xs border-[1px] border-p_rose_300 bg-p_rose_900 bg-opacity-25 rounded-full py-0.5 px-1.5">
                   Administrador
                 </span>
               </div>

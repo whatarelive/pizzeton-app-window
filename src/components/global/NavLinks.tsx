@@ -31,7 +31,7 @@ interface Props {
 
 export function NavLinks({ isOpen }: Props) {
   return (
-    <ul className="p-5 h-full space-y-2 transition-all">
+    <ul className="space-y-1.5">
         {
           routes.map((route) => {
             const LinkIcon = route.icon;
@@ -39,14 +39,15 @@ export function NavLinks({ isOpen }: Props) {
             return (
               <NavLink to={route.path}
                 className={({ isActive }) => clsx(
-                  'inline-flex w-full gap-2 p-4 items-center text-xl rounded-md', 
+                  'inline-flex h-14 p-4 w-full gap-2 items-center text-p_gray_400 rounded-lg transition-all duration-300', 
                   {
-                    'bg-red-400 bg-opacity-30 text-red-400 w-full' : isActive,
-                    'hover:bg-secondary' : !isActive
+                    'bg-p_rose_600 bg-opacity-30 text-p_rose_300 w-full' : isActive,
+                    'hover:bg-p_gray_600' : !isActive,
+                    'justify-center': !isOpen,
                   }
                 )}
               >
-                <LinkIcon size={30} className="min-w-[30px]"/>
+                <LinkIcon size={24} className="min-w-6"/>
 
                 {
                   isOpen && (

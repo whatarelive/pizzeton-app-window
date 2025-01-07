@@ -18,7 +18,7 @@ export default {
 				p_gray_900: '#333333',
 
 				// Rosa scheme
-				p_rose_300: '#FF8668',
+				p_rose_300: '#ff866b',
 				p_rose_600: '#E2583A',
 				p_rose_900: '#CF404A',
 
