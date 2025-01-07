@@ -38,7 +38,7 @@ function createWindow() {
     paintWhenInitiallyHidden: false,
     // titleBarStyle: "hidden", 
     center: true,
-    resizable: false,
+    // resizable: false,
     autoHideMenuBar: true,
     webPreferences: {
       preload: path.join(__dirname, 'preload.mjs'),
