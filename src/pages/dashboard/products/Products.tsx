@@ -12,6 +12,8 @@ export default function Products() {
   const { search, postSearch } = useSearch();
 
   return (
+    <>
+    
     <div className="flex flex-col px-16 py-10 gap-6">
       {/* Toolbar */}
       <div className="inline-flex justify-evenly">
@@ -51,7 +53,7 @@ export default function Products() {
       </div>
 
       {/* Tabla de productos */}
-      <Table className="text-p_gray_900 border-b">
+      <Table className="text-p_gray_900">
         <TableHeader>
           <TableRow className="border-p_gray_300 border-b">
               <TableHead>Producto</TableHead>
@@ -88,6 +90,9 @@ export default function Products() {
           </PaginationItem>
         </PaginationContent>
       </Pagination>
-    </div>
+
+      </div>
+      <img src="/decoration.svg" alt="L" className="absolute bottom-0 right-0"/>
+    </>
   )
 }

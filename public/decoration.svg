@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="188.893" height="178.762" viewBox="0 0 188.893 178.762" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter color-interpolation-filters="sRGB" x="-98" y="-98" width="100" height="100" id="filter_1">
+      <feFlood flood-opacity="0" result="BackgroundImageFix_1" />
+      <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0" in="SourceAlpha" />
+      <feOffset dx="0" dy="2" />
+      <feGaussianBlur stdDeviation="2" />
+      <feColorMatrix type="matrix" values="0 0 0 0 0.392 0 0 0 0 0.392 0 0 0 0 0.392 0 0 0 0 0" />
+      <feBlend mode="normal" in2="BackgroundImageFix_1" result="Shadow_2" />
+      <feBlend mode="normal" in="SourceGraphic" in2="Shadow_2" result="Shape_3" />
+    </filter>
+    <filter color-interpolation-filters="sRGB" x="-68" y="-68" width="70" height="70" id="filter_2">
+      <feFlood flood-opacity="0" result="BackgroundImageFix_1" />
+      <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0" in="SourceAlpha" />
+      <feOffset dx="0" dy="2" />
+      <feGaussianBlur stdDeviation="2" />
+      <feColorMatrix type="matrix" values="0 0 0 0 0.392 0 0 0 0 0.392 0 0 0 0 0.392 0 0 0 0 0" />
+      <feBlend mode="normal" in2="BackgroundImageFix_1" result="Shadow_2" />
+      <feBlend mode="normal" in="SourceGraphic" in2="Shadow_2" result="Shape_3" />
+    </filter>
+    <filter color-interpolation-filters="sRGB" x="-48" y="-48" width="50" height="50" id="filter_3">
+      <feFlood flood-opacity="0" result="BackgroundImageFix_1" />
+      <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0" in="SourceAlpha" />
+      <feOffset dx="0" dy="2" />
+      <feGaussianBlur stdDeviation="2" />
+      <feColorMatrix type="matrix" values="0 0 0 0 0.392 0 0 0 0 0.392 0 0 0 0 0.392 0 0 0 0 0" />
+      <feBlend mode="normal" in2="BackgroundImageFix_1" result="Shadow_2" />
+      <feBlend mode="normal" in="SourceGraphic" in2="Shadow_2" result="Shape_3" />
+    </filter>
+  </defs>
+  <g id="decoration">
+    <g transform="matrix(0.906 -0.423 0.423 0.906 56 88.131)">
+      <rect width="100" height="100" filter="url(#filter_1)" />
+      <path id="Group" d="M37.4556 0C22.5817 0 9.24931 6.41619 0 16.6654L37.4556 83.3271L74.9111 16.6654C65.7035 6.45786 52.3294 0 37.4556 0L37.4556 0ZM16.6238 20.8318C16.6238 16.2488 20.3735 12.4991 24.9565 12.4991C29.5395 12.4991 33.2892 16.2488 33.2892 20.8318C33.2892 25.4148 29.5395 29.1645 24.9565 29.1645C20.3735 29.1645 16.6238 25.4148 16.6238 20.8318L16.6238 20.8318ZM37.4556 54.1626C32.8726 54.1626 29.1229 50.4129 29.1229 45.8299C29.1229 41.2469 32.8726 37.4972 37.4556 37.4972C42.0386 37.4972 45.7883 41.2469 45.7883 45.8299C45.7883 50.4129 42.0386 54.1626 37.4556 54.1626L37.4556 54.1626Z" fill="#E2583A" fill-rule="evenodd" fill-opacity="0.149" transform="translate(12.542 8.333)" />
+    </g>
+    <g transform="matrix(0.906 -0.423 0.423 0.906 0 83.131)">
+      <rect width="70" height="70" filter="url(#filter_2)" />
+      <path id="Group" d="M26.2189 0C15.8072 0 6.47452 4.49133 0 11.6658L26.2189 58.329L52.4378 11.6658C45.9924 4.5205 36.6306 0 26.2189 0L26.2189 0ZM11.6367 14.5823C11.6367 11.3742 14.2615 8.74935 17.4696 8.74935C20.6777 8.74935 23.3025 11.3742 23.3025 14.5823C23.3025 17.7903 20.6777 20.4152 17.4696 20.4152C14.2615 20.4152 11.6367 17.7903 11.6367 14.5823L11.6367 14.5823ZM26.2189 37.9139C23.0108 37.9139 20.386 35.289 20.386 32.081C20.386 28.8729 23.0108 26.2481 26.2189 26.2481C29.427 26.2481 32.0518 28.8729 32.0518 32.081C32.0518 35.289 29.427 37.9139 26.2189 37.9139L26.2189 37.9139Z" fill="#E2583A" fill-rule="evenodd" fill-opacity="0.102" transform="translate(8.779 5.833)" />
+    </g>
+    <g transform="matrix(0.906 -0.423 0.423 0.906 93 21.131)">
+      <rect width="50" height="50" filter="url(#filter_3)" />
+      <path id="Group" d="M18.7281 0C11.2911 0 4.62475 3.20816 0 8.33288L18.7281 41.6644L37.4563 8.33288C32.8524 3.22899 26.1652 0 18.7281 0L18.7281 0ZM8.31207 10.4161C8.31207 8.12456 10.187 6.24966 12.4785 6.24966C14.7701 6.24966 16.645 8.12456 16.645 10.4161C16.645 12.7076 14.7701 14.5825 12.4785 14.5825C10.187 14.5825 8.31207 12.7076 8.31207 10.4161L8.31207 10.4161ZM18.7282 27.0819C16.4366 27.0819 14.5617 25.207 14.5617 22.9154C14.5617 20.6239 16.4366 18.749 18.7282 18.749C21.0197 18.749 22.8946 20.6239 22.8946 22.9154C22.8946 25.207 21.0197 27.0819 18.7282 27.0819L18.7282 27.0819Z" fill="#E2583A" fill-rule="evenodd" fill-opacity="0.078" transform="translate(6.271 4.167)" />
+    </g>
+  </g>
+</svg>
