@@ -1,5 +1,6 @@
 import { useRef } from "react";
-import { IoMdClose, IoMdCalendar } from "react-icons/io";
+import { FaRegWindowRestore } from "react-icons/fa";
+import { MdClose } from "react-icons/md";
 
 const initial = { width: 1280, heigth: 720 };
 const target = { width: 1920, heigth: 1080 };
@@ -20,16 +21,16 @@ export function NavBar() {
     }
 
   return (
-    <section className="flex w-full justify-end p-3">
+    <section className="flex w-full justify-end px-3 pt-3">
         <div className="inline-flex gap-3">
-            <IoMdCalendar 
-                size={30} 
+            <FaRegWindowRestore
+                size={20} 
                 onClick={resizeWindow}
                 className="text-gray-500 hover:text-cyan-600"
             />
             
-            <IoMdClose 
-                size={30} 
+            <MdClose 
+                size={24} 
                 onClick={() => window.close()}
                 className="text-gray-500 hover:text-red-600"
             />

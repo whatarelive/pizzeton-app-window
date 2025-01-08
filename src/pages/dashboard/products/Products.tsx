@@ -1,119 +1,54 @@
+import { Suspense } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
-import { Table, TableCaption, TableHeader, TableRow, TableHead, TableBody, TableCell, TableFooter } from "@/components/ui/table";
-import { IoIosListBox, IoIosSearch, IoIosAdd, IoIosSwap, IoMdFunnel } from "react-icons/io";
-
-const invoices = [
-  {
-    invoice: "INV001",
-    paymentStatus: "Paid",
-    totalAmount: "$250.00",
-    paymentMethod: "Credit Card",
-  },
-  {
-    invoice: "INV002",
-    paymentStatus: "Pending",
-    totalAmount: "$150.00",
-    paymentMethod: "PayPal",
-  },
-  {
-    invoice: "INV003",
-    paymentStatus: "Unpaid",
-    totalAmount: "$350.00",
-    paymentMethod: "Bank Transfer",
-  },
-  {
-    invoice: "INV004",
-    paymentStatus: "Paid",
-    totalAmount: "$450.00",
-    paymentMethod: "Credit Card",
-  },
-  {
-    invoice: "INV005",
-    paymentStatus: "Paid",
-    totalAmount: "$550.00",
-    paymentMethod: "PayPal",
-  },
-  {
-    invoice: "INV006",
-    paymentStatus: "Pending",
-    totalAmount: "$200.00",
-    paymentMethod: "Bank Transfer",
-  },
-  {
-    invoice: "INV007",
-    paymentStatus: "Unpaid",
-    totalAmount: "$300.00",
-    paymentMethod: "Credit Card",
-  },
-]
+import { ProductsTable } from "@/Views/ProductsTable";
+import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
+import { MdListAlt, MdOutlineSearch, MdAdd, MdOutlineSwapVert, MdFilterList } from "react-icons/md";
+import { getProducts } from "@/actions/products";
 
 export default function Products() {
   return (
-    <div className="flex flex-col px-16 py-10">
+    <div className="flex flex-col px-16 py-10 gap-6">
       {/* Toolbar */}
       <div className="inline-flex justify-evenly">
 
         {/* Title */}
         <div className="inline-flex flex-1 gap-2 items-end">
-          <IoIosListBox size={32} color="#333"/>
+          <MdListAlt size={32} color="#333"/>
           <h1 className="text-p_gray_900 font-bold text-lg">
             Productos
           </h1>
         </div>
 
+        {/* Controls Menu */}
         <div className="flex flex-0 min-w-[405px] justify-between">
-          {/* Input Search */}
-          <Input type="text" placeholder="¿Qué estás buscando?" className="items-center gap-2 w-[235px] h-10">
-            <IoIosSearch size={24} color="#333" className="min-w-6"/>
-          </Input>
+          <form action={() => {}}>
+            <Input type="text" placeholder="¿Qué estás buscando?" className="items-center gap-2 w-[235px] h-10">
+              <MdOutlineSearch size={24} color="#333" className="min-w-6"/>
+            </Input>
+          </form>
 
           <Button size="icon" variant="outline">
-            <IoIosSwap size={20} color="#333" className="rotate-90"/>
+            <MdOutlineSwapVert size={20} color="#333"/>
           </Button>
 
           <Button size="icon" variant="outline">
-            <IoMdFunnel size={20} color="#333"/>
+            <MdFilterList size={20} color="#333"/>
           </Button>
           
-          <Button size="icon" variant="destructive" className="hover:text-p_rose_600">
-            <IoIosAdd size={28} className="min-w-[28px]"/>
+          <Button size="icon" variant="destructive" className="hover:bg-p_rose_900">
+            <MdAdd size={24} className="min-w-[28px]"/>
           </Button>
         </div>
       </div>
 
       {/* Tabla de productos */}
-      <Table className="text-black ">
-        <TableCaption>A list of your recent invoices.</TableCaption>
-        <TableHeader>
-          <TableRow>
-            <TableHead className="w-[100px]">Invoice</TableHead>
-            <TableHead>Status</TableHead>
-            <TableHead>Method</TableHead>
-            <TableHead className="text-right">Amount</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {invoices.map((invoice) => (
-            <TableRow key={invoice.invoice}>
-              <TableCell className="font-medium">{invoice.invoice}</TableCell>
-              <TableCell>{invoice.paymentStatus}</TableCell>
-              <TableCell>{invoice.paymentMethod}</TableCell>
-              <TableCell className="text-right">{invoice.totalAmount}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-        <TableFooter>
-          <TableRow>
-            <TableCell>Total</TableCell>
-            <TableCell className="text-right">$2,500.00</TableCell>
-          </TableRow>
-        </TableFooter>
-      </Table>
+      <Suspense fallback={<h2>Cargando......</h2>}>
+        <ProductsTable getProducts={getProducts()}/>
+      </Suspense>
 
       {/* Paginizacion de la tabla */}
-      <Pagination>
+      <Pagination className="text-p_gray_900">
         <PaginationContent>
           <PaginationItem>
             <PaginationPrevious href="#" />
@@ -130,13 +65,11 @@ export default function Products() {
             <PaginationLink href="#">3</PaginationLink>
           </PaginationItem>
           <PaginationItem>
-            <PaginationEllipsis />
-          </PaginationItem>
-          <PaginationItem>
             <PaginationNext href="#" />
           </PaginationItem>
         </PaginationContent>
       </Pagination>
+
     </div>
   )
 }

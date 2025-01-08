@@ -1,28 +1,27 @@
 import clsx from "clsx";
 import { NavLink } from "react-router";
-import { IoMdHome, IoIosListBox, IoIosCalendar } from "react-icons/io";
-import { IoChatboxEllipses } from "react-icons/io5";
+import { MdHome, MdListAlt, MdCalendarMonth, MdChat } from "react-icons/md";
 import type { Route } from "@/interfaces";
 
 const routes: Route[] = [{
   label: 'Inicio',
   path: '/',
-  icon: IoMdHome
+  icon: MdHome
 },
 {
   label: 'Productos',
   path: '/products',
-  icon: IoIosListBox
+  icon: MdListAlt
 },
 {
   label: 'Eventos',
   path: '/events',
-  icon: IoIosCalendar
+  icon: MdCalendarMonth
 },
 {
   label: 'Opiniones',
   path: '/opinions',
-  icon: IoChatboxEllipses
+  icon: MdChat
 },]
 
 interface Props {
