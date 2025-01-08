@@ -1,12 +1,16 @@
 import { Suspense } from "react";
+import { useSearch } from '@/hooks/useSearch';
+import { getProducts } from "@/actions/products";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ProductsTable } from "@/Views/ProductsTable";
+import { Table, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
 import { MdListAlt, MdOutlineSearch, MdAdd, MdOutlineSwapVert, MdFilterList } from "react-icons/md";
-import { getProducts } from "@/actions/products";
 
 export default function Products() {
+  const { search, postSearch } = useSearch();
+
   return (
     <div className="flex flex-col px-16 py-10 gap-6">
       {/* Toolbar */}
@@ -22,11 +26,15 @@ export default function Products() {
 
         {/* Controls Menu */}
         <div className="flex flex-0 min-w-[405px] justify-between">
-          <form action={() => {}}>
-            <Input type="text" placeholder="¿Qué estás buscando?" className="items-center gap-2 w-[235px] h-10">
-              <MdOutlineSearch size={24} color="#333" className="min-w-6"/>
-            </Input>
-          </form>
+          <Input 
+            type="text" 
+            name="search" 
+            placeholder="¿Qué estás buscando?" 
+            className="items-center gap-2 w-[235px] h-10"
+            onChange={(e) => postSearch(e.target.value)}
+          >
+            <MdOutlineSearch size={24} color="#333" className="min-w-6"/>
+          </Input>
 
           <Button size="icon" variant="outline">
             <MdOutlineSwapVert size={20} color="#333"/>
@@ -43,9 +51,20 @@ export default function Products() {
       </div>
 
       {/* Tabla de productos */}
-      <Suspense fallback={<h2>Cargando......</h2>}>
-        <ProductsTable getProducts={getProducts()}/>
-      </Suspense>
+      <Table className="text-p_gray_900 border-b">
+        <TableHeader>
+          <TableRow className="border-p_gray_300 border-b">
+              <TableHead>Producto</TableHead>
+              <TableHead>Precio</TableHead>
+              <TableHead>Categoría</TableHead>
+              <TableHead>Disponibilidad</TableHead>
+              <TableHead></TableHead>
+          </TableRow>
+        </TableHeader>
+        <Suspense fallback={<h2>Cargando......</h2>}>
+          <ProductsTable getProducts={getProducts({ search: search })}/>
+        </Suspense>
+      </Table>
 
       {/* Paginizacion de la tabla */}
       <Pagination className="text-p_gray_900">
@@ -69,7 +88,6 @@ export default function Products() {
           </PaginationItem>
         </PaginationContent>
       </Pagination>
-
     </div>
   )
 }

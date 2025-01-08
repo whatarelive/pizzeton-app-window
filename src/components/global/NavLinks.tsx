@@ -36,7 +36,7 @@ export function NavLinks({ isOpen }: Props) {
             const LinkIcon = route.icon;
 
             return (
-              <NavLink to={route.path}
+              <NavLink key={route.label} to={route.path}
                 className={({ isActive }) => clsx(
                   'inline-flex h-14 p-4 w-full gap-2 items-center text-p_gray_400 rounded-lg transition-all duration-300', 
                   {
