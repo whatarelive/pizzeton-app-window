@@ -1,80 +1,88 @@
-import type { FC, ComponentProps } from "react";
-import { ChevronLeft, ChevronRight, MoreHorizontal } from "lucide-react"
+import { use } from "react";
 import { cn } from "@/lib/utils";
+import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import { ButtonProps, buttonVariants } from "@/components/ui/button";
+
+interface PaginationProps {
+  currentPage: number;
+  getPages: Promise<number>; 
+}
 
 type PaginationLinkProps = {
   isActive?: boolean
 } & Pick<ButtonProps, "size"> & React.ComponentProps<"a">
 
-export const Pagination: FC<ComponentProps<"nav">> = ({ className, children, ...props }) => (
-  <nav
-    role="navigation"
-    aria-label="pagination"
-    className={cn("mx-auto flex w-full justify-center", className)} 
-    {...props}
-  >
-    { children }
-  </nav>
-)
+type Destiny = 'next' | 'previous';
 
-export const PaginationContent: FC<ComponentProps<"ul">> = ({ className, children, ...props }) => (
-  <ul className={cn("flex flex-row items-center gap-1", className)} {...props}>
-    { children }
-  </ul>
-)
+export function Pagination({ currentPage, getPages }: PaginationProps) {
+  const pages = use(getPages);
 
-export const PaginationItem: FC<ComponentProps<"li">> = ({ className, children, ...props }) => (
-  <li className={className} {...props}>
-    { children }
-  </li>
-)
+  const navigate = (destiny: Destiny) => {
+    if (destiny === 'next' && currentPage < pages) {
+      return `?page=${currentPage + 1}`;
 
-export const PaginationLink: FC<PaginationLinkProps> = ({ className, isActive, size = "icon", ...props }) => (
-  <a
-    aria-current={isActive ? "page" : undefined}
-    className={cn(
-      buttonVariants({
-        variant: isActive ? "outline" : "ghost",
-        size,
-      }),
-      className
-    )}
-    {...props}
-  />
-)
+    } else if(destiny === 'previous' && currentPage > 1 ) {
+      return `?page=${currentPage - 1}`
+    }
+  }
 
-export const PaginationPrevious: FC<ComponentProps<typeof PaginationLink>> = ({ className, ...props }) => (
-  <PaginationLink
-    aria-label="Go to previous page"
-    size="default"
-    className={cn("gap-1 pl-2.5", className)}
-    {...props}
-  >
-    <ChevronLeft className="h-4 w-4" />
-    <span>Previous</span>
-  </PaginationLink>
-)
+  return (
+    <nav role="navigation" aria-label="pagination" className="mx-auto h-11 flex w-full justify-center">
+      <ul className="flex flex-row border-2 rounded-xl">
+        {/* Button Previuos */}
+        <li key={0}>
+            <PaginationLink
+              size="default"
+              href={navigate("previous")}
+              aria-label="Go to previous page"
+              className="pl-2.5 border-r-2 rounded-r-none rounded-l-xl"
+            >
+              <MdChevronLeft size={24} />
+            </PaginationLink>
+        </li>
 
-export const PaginationNext: FC<ComponentProps<typeof PaginationLink>> = ({ className, ...props }) => (
-  <PaginationLink
-    aria-label="Go to next page"
-    size="default"
-    className={cn("gap-1 pr-2.5", className)}
-    {...props}
-  >
-    <span>Next</span>
-    <ChevronRight className="h-4 w-4" />
-  </PaginationLink>
-)
+        {/* Numbers Pages */}
+        {
+          new Array<number>(pages).map((n) => (
+            <li key={(pages + 1)}>
+              <PaginationLink href={`?page=${n}`} isActive={currentPage === n}>
+                { n }
+              </PaginationLink>
+            </li>
+          ))
+        }
 
-export const PaginationEllipsis: FC<ComponentProps<"span">> = ({ className, ...props }) => (
-  <span
-    aria-hidden
-    className={cn("flex h-9 w-9 items-center justify-center", className)}
-    {...props}
-  >
-    <MoreHorizontal className="h-4 w-4" />
-    <span className="sr-only">More pages</span>
-  </span>
-)
+        {/* Button Next */}
+        <li key={pages + 2}>
+            <PaginationLink
+                size="default"
+                href={navigate("next")}
+                aria-label="Go to next page"
+                className="pr-2.5 border-r-0 rounded-r-xl"
+            >
+                <MdChevronRight size={24} />
+            </PaginationLink>
+        </li>
+      </ul>
+    </nav>
+  )
+}
+
+function PaginationLink({ className, isActive, size = "icon", ...props }: PaginationLinkProps) {
+  return (
+    <a aria-current={isActive ? "page" : undefined}
+      className={cn(
+        buttonVariants({
+          variant: isActive ? "destructive" : "ghost",
+          size,
+        }),
+        'rounded-none border-r-2 text-p_gray_600',
+        {
+          'hover:text-p_rose_900 text-white': isActive
+        },
+        className
+      )}
+      {...props}
+    />
+  )
+}
