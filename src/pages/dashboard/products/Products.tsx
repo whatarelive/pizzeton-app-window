@@ -43,7 +43,7 @@ export default function Products() {
         {/* Paginizacion de la tabla */}
         <Pagination/>
       </div>
-      <img src="/decoration.svg" alt="L" className="absolute bottom-0 right-0"/>
+      <img src="/decoration.svg" alt="L" className="absolute -z-10 bottom-0 right-0"/>
     </>
   )
 }

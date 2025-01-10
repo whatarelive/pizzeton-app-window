@@ -1,14 +1,14 @@
 import clsx from "clsx";
 import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "react-router";
-import { MdMoreVert } from "react-icons/md";
 import { pizzetonApi } from "@/api/api-conifg";
-import { Button } from "@/components/ui/button";
 import { TableSkeleton } from "@/components/products/product-skeletons";
+import { ProductOptions } from "@/components/products/product-options";
 import { ProductCategory } from "@/components/products/product-category";
 import { ProductDisponibility } from "@/components/products/product-disponibility";
 import { TableRow, TableBody, TableCell, Table, TableHead, TableHeader } from "@/components/ui/table";
 import type { Product } from "@/interfaces";
+  
 
 export function ProductsTable() {
     const [ params ] = useSearchParams();
@@ -103,9 +103,7 @@ export function ProductsTable() {
                     </TableCell>
                     
                     <TableCell>
-                        <Button size="icon" variant="ghost">
-                            <MdMoreVert size={24}/>
-                        </Button>
+                        <ProductOptions productId={product.id}/>
                     </TableCell>
                 </TableRow>
             ))}
