@@ -1,7 +1,18 @@
 import type { IconType } from "react-icons";
+import type { ButtonProps } from "@/components/ui/button";
 
 export type Category = 'Pizzas' | 'Pastas' | 'Postres' | 'Bebidas'
+type Destiny = 'next' | 'previous';
 
+export type PaginationLinkProps = {
+    isActive?: boolean
+} & Pick<ButtonProps, "size"> & React.ComponentProps<"button">
+
+export interface NavigateProps {
+    destiny?: Destiny; 
+    num?: number;  
+}
+  
 export interface Route {
     label: string;
     path: `/${string}`;

@@ -29,26 +29,16 @@ export let win: BrowserWindow | null
 function createWindow() {
   win = new BrowserWindow({
     icon: path.join(process.env.VITE_PUBLIC, 'logo.svg'),
-    minHeight: 720,
-    // maxHeight: 1080,
-    minWidth: 1280,
-    // maxWidth: 1920,
     width: 1280,
     height: 720,
     paintWhenInitiallyHidden: false,
-    // titleBarStyle: "hidden", 
     center: true,
-    // resizable: false,
+    resizable: false,
     autoHideMenuBar: true,
     webPreferences: {
       preload: path.join(__dirname, 'preload.mjs'),
     },
   })
-
-  // Test active push message to Renderer-process.
-  // win.webContents.on('did-finish-load', () => {
-  //   win?.webContents.send('main-process-message', (new Date).toLocaleString())
-  // })
 
   if (VITE_DEV_SERVER_URL) {
     win.loadURL(VITE_DEV_SERVER_URL)

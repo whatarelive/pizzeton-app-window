@@ -10,7 +10,7 @@ const routes: Route[] = [{
 },
 {
   label: 'Productos',
-  path: '/products',
+  path: '/products?page=0',
   icon: MdListAlt
 },
 {

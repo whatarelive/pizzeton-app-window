@@ -1,13 +1,18 @@
-// import { BrowserRouter } from "react-router";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { BrowserRouter } from "react-router";
 import AppRouter from "@/router/AppRouter";
-import { HashRouter } from "react-router";
+// import { HashRouter } from "react-router";
+
+const queryClient = new QueryClient();
 
 export function App() {
   return (
-    // <BrowserRouter>
-    <HashRouter>
-      <AppRouter/>
-    </HashRouter>
-    // </BrowserRouter>
+    // <HashRouter> 
+    <BrowserRouter>
+      <QueryClientProvider client={queryClient}>
+        <AppRouter/>
+      </QueryClientProvider>
+    </BrowserRouter>
+    // </HashRouter>
   )
 }
