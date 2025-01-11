@@ -3,16 +3,16 @@ import { type FC, forwardRef } from "react";
 import { cn } from "@/lib/utils"
 import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu"
 
-export const DropdownMenu = DropdownMenuPrimitive.Root
-export const DropdownMenuTrigger = DropdownMenuPrimitive.Trigger
-export const DropdownMenuGroup = DropdownMenuPrimitive.Group
-export const DropdownMenuPortal = DropdownMenuPrimitive.Portal
-export const DropdownMenuSub = DropdownMenuPrimitive.Sub
-export const DropdownMenuRadioGroup = DropdownMenuPrimitive.RadioGroup
+export const Root = DropdownMenuPrimitive.Root
+export const Trigger = DropdownMenuPrimitive.Trigger
+export const Group = DropdownMenuPrimitive.Group
+export const Portal = DropdownMenuPrimitive.Portal
+export const Sub = DropdownMenuPrimitive.Sub
+export const RadioGroup = DropdownMenuPrimitive.RadioGroup
 
 interface Props {
   className?: string;
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 interface DropdownMenuInsetProps extends Props {
@@ -35,7 +35,7 @@ export const DropdownMenuSubTrigger: FC<DropdownMenuInsetProps> = ({ className, 
   </DropdownMenuPrimitive.SubTrigger>
 )
 
-export const DropdownMenuSubContent: FC<Props> = ({ className, children }) => (
+export const SubContent: FC<Props> = ({ className, children }) => (
   <DropdownMenuPrimitive.SubContent
     className={cn(
       `z-50 min-w-[8rem] overflow-hidden rounded-md border border-neutral-200 bg-white p-1 
@@ -50,7 +50,7 @@ export const DropdownMenuSubContent: FC<Props> = ({ className, children }) => (
   </DropdownMenuPrimitive.SubContent>
 )
 
-export const DropdownMenuContent: FC<DropdownMenuOffsetProps> = ({ className, sideOffset = 4, children }) => (
+export const Content: FC<DropdownMenuOffsetProps> = ({ className, sideOffset = 4, children }) => (
   <DropdownMenuPrimitive.Portal>
     <DropdownMenuPrimitive.Content
       sideOffset={sideOffset}
@@ -68,7 +68,7 @@ export const DropdownMenuContent: FC<DropdownMenuOffsetProps> = ({ className, si
   </DropdownMenuPrimitive.Portal>
 )
 
-export const DropdownMenuItem: FC<DropdownMenuInsetProps & { onClick: () => void }> = ({ className, inset, children, onClick }) => (
+export const Item: FC<DropdownMenuInsetProps & { onClick?: () => void }> = ({ className, inset, children, onClick }) => (
   <DropdownMenuPrimitive.Item
     onClick={onClick}
     className={cn(
@@ -83,7 +83,7 @@ export const DropdownMenuItem: FC<DropdownMenuInsetProps & { onClick: () => void
   </DropdownMenuPrimitive.Item>
 )
 
-export const DropdownMenuCheckboxItem = forwardRef<
+export const CheckboxItem = forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.CheckboxItem>,
   React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.CheckboxItem>
 >(({ className, children, checked, ...props }, ref) => (
@@ -106,10 +106,8 @@ export const DropdownMenuCheckboxItem = forwardRef<
     {children}
   </DropdownMenuPrimitive.CheckboxItem>
 ))
-DropdownMenuCheckboxItem.displayName =
-  DropdownMenuPrimitive.CheckboxItem.displayName
 
-export const DropdownMenuRadioItem = forwardRef<
+export const RadioItem = forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.RadioItem>,
   React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.RadioItem>
 >(({ className, children, ...props }, ref) => (
@@ -130,9 +128,8 @@ export const DropdownMenuRadioItem = forwardRef<
     {children}
   </DropdownMenuPrimitive.RadioItem>
 ))
-DropdownMenuRadioItem.displayName = DropdownMenuPrimitive.RadioItem.displayName
 
-export const DropdownMenuLabel: FC<DropdownMenuInsetProps> = ({ className, inset, children }) => (
+export const Label: FC<DropdownMenuInsetProps> = ({ className, inset, children }) => (
   <DropdownMenuPrimitive.Label
     className={cn(
       "px-2 py-1.5 text-sm font-semibold",
@@ -144,7 +141,7 @@ export const DropdownMenuLabel: FC<DropdownMenuInsetProps> = ({ className, inset
   </DropdownMenuPrimitive.Label>
 )
 
-export const DropdownMenuSeparator: FC<Props> = ({ className, children }) => (
+export const Separator: FC<Props> = ({ className, children }) => (
   <DropdownMenuPrimitive.Separator
     className={cn("-mx-1 my-1 h-px bg-neutral-100", className)}
   >
@@ -160,3 +157,13 @@ export const DropdownMenuShortcut = ({ className, ...props }: React.HTMLAttribut
     />
   )
 }
+
+export const Tooltip: FC<Props> = ({ className }) => (
+  <div 
+    className={cn(
+      `absolute border-b-[30px] border-l-[20px] border-r-[20px] border-b-p_gray_900 
+      border-l-transparent border-r-transparent`, 
+      className
+    )}
+  />
+)
