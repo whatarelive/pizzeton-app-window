@@ -87,7 +87,7 @@ export function ProductsTable() {
         </TableHeader>
         <TableBody>
             { data && data.map((product) => (
-                <TableRow key={product.id}>
+                <TableRow key={product.id} className="hover:bg-p_gray_100 hover:rounded-lg">
                     <TableCell className="flex gap-4">
                         <img 
                             src={product.imgUrl} 
