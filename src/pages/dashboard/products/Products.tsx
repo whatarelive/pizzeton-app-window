@@ -8,40 +8,37 @@ import { ProductFilters } from "@/components/products/product-filters";
 
 export default function Products() {
   return (
-    <> 
-      <div className="flex flex-col px-16 py-10 gap-6">
-        {/* Toolbar */}
-        <div className="inline-flex justify-evenly">
+    <div className="flex flex-col px-16 py-10 gap-6">
+      {/* Toolbar */}
+      <div className="inline-flex justify-evenly">
 
-          {/* Title */}
-          <div className="inline-flex flex-1 gap-2 items-end">
-            <MdListAlt size={32} color="#333"/>
-            <h1 className="text-p_gray_900 font-bold text-lg">
-              Productos
-            </h1>
-          </div>
-
-          {/* Controls Menu */}
-          <div className="flex flex-0 min-w-[405px] justify-between">
-            <Search/>
-            
-            <ProductOrderBy/>
-
-            <ProductFilters/>
-            
-            <Button size="icon" variant="destructive" className="hover:bg-p_rose_900">
-              <MdAdd size={24} className="min-w-[28px]"/>
-            </Button>
-          </div>
+        {/* Title */}
+        <div className="inline-flex flex-1 gap-2 items-end">
+          <MdListAlt size={32} color="#333"/>
+          <h1 className="text-p_gray_900 font-bold text-lg">
+            Productos
+          </h1>
         </div>
 
-        {/* Tabla de productos */}
-        <ProductsTable/>
-      
-        {/* Paginizacion de la tabla */}
-        <Pagination/>
+        {/* Controls Menu */}
+        <div className="flex flex-0 min-w-[405px] justify-between">
+          <Search/>
+          
+          <ProductOrderBy/>
+
+          <ProductFilters/>
+          
+          <Button size="icon" variant="destructive" className="hover:bg-p_rose_900">
+            <MdAdd size={24} className="min-w-[28px]"/>
+          </Button>
+        </div>
       </div>
-      <img src="/decoration.svg" alt="L" className="absolute -z-10 bottom-0 right-0"/>
-    </>
+
+      {/* Tabla de productos */}
+      <ProductsTable/>
+    
+      {/* Paginizacion de la tabla */}
+      <Pagination/>
+    </div>
   )
 }

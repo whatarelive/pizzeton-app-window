@@ -39,7 +39,7 @@ export const TableRow: FC<Props> = ({ className, children }) => (
 )
 
 export const TableHead: FC<Props> = ({ className, children }) => (
-  <th className={cn("px-2 py-3 text-left align-middle font-bold text-p_gray_900", className ) }>
+  <th className={cn("px-2 py-3 text-left w-[120px] align-middle font-bold text-p_gray_900", className ) }>
     { children }
   </th>
 )

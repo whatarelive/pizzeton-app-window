@@ -31,8 +31,8 @@ export function ProductOrderBy() {
             <DropdownMenu.Trigger className="hover:bg-neutral-300 rounded-lg outline-none hover:bg-opacity-20 p-2 w-10 h-10 border border-p_gray_200">
                 <MdOutlineSwapVert size={20} color="#333"/>
             </DropdownMenu.Trigger>
-            <DropdownMenu.Content className="p-3 min-w-48 bg-p_gray_900 rounded-xl shadow-lg border-0 shadow-p_gray_900">
-               <DropdownMenu.Tooltip className="-top-[14px] left-[76px]"/>
+            <DropdownMenu.Content className="absolute -right-24 top-4 p-3 min-w-48 bg-p_gray_900 rounded-xl shadow-lg border-0 shadow-p_gray_900">
+               <DropdownMenu.Tooltip className="fixed -top-[1px] -left-5"/>
                
                 <DropdownMenu.Label className="text-white">
                     Ordernar por

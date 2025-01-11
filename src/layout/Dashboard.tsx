@@ -10,6 +10,7 @@ export default function Dashboard() {
       <section className="w-full">
         {/* <NavBar/> */}
         <Outlet/>
+        <img src="/decoration.svg" alt="L" className="absolute -z-10 bottom-0 right-0"/>
       </section>
     </main>
   )

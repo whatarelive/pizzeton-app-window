@@ -16,9 +16,9 @@ export function TableSkeleton() {
                         <Skeleton className="h-5 w-[80px]" />                        
                     </TableHead>
                     <TableHead>
-                       <Skeleton className="h-5 w-[100px]" />
+                       <Skeleton className="h-5 w-[120px]" />
                     </TableHead>
-                    <TableHead></TableHead>
+                    <TableHead className="w-0"></TableHead>
                 </TableRow>
             </TableHeader>
             <TableBody>

@@ -8,6 +8,7 @@ import { ProductCategory } from "@/components/products/product-category";
 import { ProductDisponibility } from "@/components/products/product-disponibility";
 import { TableRow, TableBody, TableCell, Table, TableHead, TableHeader } from "@/components/ui/table";
 import type { Product } from "@/interfaces";
+import { ProductOrderByItem } from "./product-orderby-item";
   
 
 export function ProductsTable() {
@@ -49,11 +50,39 @@ export function ProductsTable() {
     <Table className="text-p_gray_900">
         <TableHeader>
             <TableRow className="border-p_gray_300 border-b">
-                <TableHead className="w-[550px]">Producto</TableHead>
-                <TableHead>Precio</TableHead>
-                <TableHead>Categoría</TableHead>
-                <TableHead>Disponibilidad</TableHead>
-                <TableHead></TableHead>
+                <TableHead className="w-[550px]">
+                    <ProductOrderByItem 
+                        field={"Producto"} 
+                        table
+                        orderDSC={params.get("order") === "DESC"} 
+                        isField={params.get('field') === "nombre"}
+                    />    
+                </TableHead>
+                <TableHead>
+                    <ProductOrderByItem 
+                        field={"Precio"} 
+                        table
+                        orderDSC={params.get("order") === "DESC"} 
+                        isField={params.get('field') === "precio"}
+                    />    
+                </TableHead>
+                <TableHead>
+                    <ProductOrderByItem 
+                        field={"Categoría"} 
+                        table
+                        orderDSC={params.get("order") === "DESC"} 
+                        isField={params.get('field') === "categoría"}
+                    />        
+                </TableHead>
+                <TableHead>
+                    <ProductOrderByItem 
+                        field={"Disponibilidad"} 
+                        table
+                        orderDSC={params.get("order") === "DESC"} 
+                        isField={params.get('field') === "disponibilidad"}
+                    />    
+                </TableHead>
+                <TableHead className="w-0"/>
             </TableRow>
         </TableHeader>
         <TableBody>

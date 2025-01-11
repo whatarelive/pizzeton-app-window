@@ -11,9 +11,9 @@ export function PaginationLink({ className, isActive, size = "icon", ...props }:
           variant: isActive ? "destructive" : "outline",
           size,
         }),
-        'rounded-none border-r-2 text-p_gray_600',
+        'rounded-none hover:border-r text-p_gray_400 font-bold',
         {
-          'hover:text-p_rose_900 text-white': isActive
+          'hover:text-p_rose_900 hover:border text-white': isActive
         },
         className
       )}

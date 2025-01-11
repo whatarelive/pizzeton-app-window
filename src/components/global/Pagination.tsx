@@ -57,14 +57,14 @@ export function Pagination() {
 
   return (
     <nav role="navigation" aria-label="pagination" className="mx-auto flex w-full justify-center">
-      <ul className="flex flex-row border rounded-lg">
+      <ul className="flex flex-row">
         {/* Button Previuos */}
         <li key={0}>
           <PaginationLink
             size="default"
             onClick={() => navigate({ destiny: "previous" })}
             aria-label="Go to previous page"
-            className="pl-2.5 border-r rounded-r-none rounded-l-lg"
+            className="pl-2.5 hover:border rounded-l-lg"
           >
             <MdChevronLeft size={24} />
           </PaginationLink>
@@ -87,7 +87,7 @@ export function Pagination() {
               size="default"
               onClick={() => navigate({ destiny: "next" })}
               aria-label="Go to next page"
-              className="pr-2.5 border-r-0 rounded-r-lg"
+              className="pr-2.5 hover:border rounded-r-lg"
           >
               <MdChevronRight size={24} />
           </PaginationLink>
