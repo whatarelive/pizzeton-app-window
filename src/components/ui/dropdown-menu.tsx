@@ -1,5 +1,4 @@
-// import * as React from "react"
-import { type FC, forwardRef } from "react";
+import type { FC } from "react"
 import { cn } from "@/lib/utils"
 import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu"
 
@@ -13,21 +12,17 @@ export const RadioGroup = DropdownMenuPrimitive.RadioGroup
 interface Props {
   className?: string;
   children?: React.ReactNode;
-}
-
-interface DropdownMenuInsetProps extends Props {
-  inset?: boolean;
+  onClick?: () => void;
 }
 
 interface DropdownMenuOffsetProps extends Props {
   sideOffset?: number;
 }
 
-export const DropdownMenuSubTrigger: FC<DropdownMenuInsetProps> = ({ className, inset, children }) => (
+export const DropdownMenuSubTrigger: FC<Props> = ({ className, children }) => (
   <DropdownMenuPrimitive.SubTrigger
     className={cn(
       `flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none focus:bg-neutral-100`,
-      inset && "pl-8",
       className
     )}
   >
@@ -68,14 +63,13 @@ export const Content: FC<DropdownMenuOffsetProps> = ({ className, sideOffset = 4
   </DropdownMenuPrimitive.Portal>
 )
 
-export const Item: FC<DropdownMenuInsetProps & { onClick?: () => void }> = ({ className, inset, children, onClick }) => (
+export const Item: FC<Props> = ({ className, children, onClick }) => (
   <DropdownMenuPrimitive.Item
     onClick={onClick}
     className={cn(
       `relative flex cursor-default select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm 
       outline-none transition-colors focus:bg-neutral-100 focus:text-neutral-900 data-[disabled]:pointer-events-none 
       data-[disabled]:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0`,
-      inset && "pl-8",
       className
     )}
   >
@@ -83,80 +77,17 @@ export const Item: FC<DropdownMenuInsetProps & { onClick?: () => void }> = ({ cl
   </DropdownMenuPrimitive.Item>
 )
 
-export const CheckboxItem = forwardRef<
-  React.ElementRef<typeof DropdownMenuPrimitive.CheckboxItem>,
-  React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.CheckboxItem>
->(({ className, children, checked, ...props }, ref) => (
-  <DropdownMenuPrimitive.CheckboxItem
-    ref={ref}
-    className={cn(
-      `relative flex cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none 
-      transition-colors focus:bg-neutral-100 focus:text-neutral-900 data-[disabled]:pointer-events-none 
-      data-[disabled]:opacity-50`,
-      className
-    )}
-    checked={checked}
-    {...props}
-  >
-    <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
-      <DropdownMenuPrimitive.ItemIndicator>
-        {/* <Check className="h-4 w-4" /> */}
-      </DropdownMenuPrimitive.ItemIndicator>
-    </span>
-    {children}
-  </DropdownMenuPrimitive.CheckboxItem>
-))
-
-export const RadioItem = forwardRef<
-  React.ElementRef<typeof DropdownMenuPrimitive.RadioItem>,
-  React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.RadioItem>
->(({ className, children, ...props }, ref) => (
-  <DropdownMenuPrimitive.RadioItem
-    ref={ref}
-    className={cn(
-      `relative flex cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none transition-colors 
-      focus:bg-neutral-100 focus:text-neutral-900 data-[disabled]:pointer-events-none data-[disabled]:opacity-50`,
-      className
-    )}
-    {...props}
-  >
-    <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
-      <DropdownMenuPrimitive.ItemIndicator>
-        {/* <Circle className="h-2 w-2 fill-current" /> */}
-      </DropdownMenuPrimitive.ItemIndicator>
-    </span>
-    {children}
-  </DropdownMenuPrimitive.RadioItem>
-))
-
-export const Label: FC<DropdownMenuInsetProps> = ({ className, inset, children }) => (
-  <DropdownMenuPrimitive.Label
-    className={cn(
-      "px-2 py-1.5 text-sm font-semibold",
-      inset && "pl-8",
-      className
-    )}
-  >
-      { children }
+export const Label: FC<Props> = ({ className, children }) => (
+  <DropdownMenuPrimitive.Label className={cn("px-2 py-1.5 text-sm font-semibold", className)}>
+    { children }
   </DropdownMenuPrimitive.Label>
 )
 
 export const Separator: FC<Props> = ({ className, children }) => (
-  <DropdownMenuPrimitive.Separator
-    className={cn("-mx-1 my-1 h-px bg-neutral-100", className)}
-  >
+  <DropdownMenuPrimitive.Separator className={cn("-mx-1 my-1 h-px bg-neutral-100", className)}>
     { children }
   </DropdownMenuPrimitive.Separator>
 )
-
-export const DropdownMenuShortcut = ({ className, ...props }: React.HTMLAttributes<HTMLSpanElement>) => {
-  return (
-    <span
-      className={cn("ml-auto text-xs tracking-widest opacity-60", className)}
-      {...props}
-    />
-  )
-}
 
 export const Tooltip: FC<Props> = ({ className }) => (
   <div 
