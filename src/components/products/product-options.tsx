@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router";
 import { MdMoreVert, MdEdit, MdDelete } from "react-icons/md"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { productDelete } from "@/actions/products";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 
 interface Props {
     productId: string;
-}
+} 
 
 export function ProductOptions({ productId }: Props) {
     const navigate = useNavigate();
