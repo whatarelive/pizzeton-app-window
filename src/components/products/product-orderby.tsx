@@ -28,7 +28,7 @@ export function ProductOrderBy() {
 
     return (
         <DropdownMenu.Root>
-            <DropdownMenu.Trigger className="hover:bg-neutral-300 rounded-lg hover:bg-opacity-20 p-2 w-10 h-10 border border-p_gray_200">
+            <DropdownMenu.Trigger className="hover:bg-neutral-300 rounded-lg outline-none hover:bg-opacity-20 p-2 w-10 h-10 border border-p_gray_200">
                 <MdOutlineSwapVert size={20} color="#333"/>
             </DropdownMenu.Trigger>
             <DropdownMenu.Content className="p-3 min-w-48 bg-p_gray_900 rounded-xl shadow-lg border-0 shadow-p_gray_900">

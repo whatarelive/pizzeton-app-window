@@ -1,9 +1,10 @@
-import { MdListAlt, MdAdd, MdFilterList } from "react-icons/md";
+import { MdListAlt, MdAdd } from "react-icons/md";
 import { Pagination } from "@/components/global/Pagination";
 import { Search } from "@/components/global/Search";
 import { Button } from "@/components/ui/button";
 import { ProductsTable } from "@/components/products/product-table";
 import { ProductOrderBy } from "@/components/products/product-orderby";
+import { ProductFilters } from "@/components/products/product-filters";
 
 export default function Products() {
   return (
@@ -23,11 +24,10 @@ export default function Products() {
           {/* Controls Menu */}
           <div className="flex flex-0 min-w-[405px] justify-between">
             <Search/>
+            
             <ProductOrderBy/>
 
-            <Button size="icon" variant="outline">
-              <MdFilterList size={20} color="#333"/>
-            </Button>
+            <ProductFilters/>
             
             <Button size="icon" variant="destructive" className="hover:bg-p_rose_900">
               <MdAdd size={24} className="min-w-[28px]"/>
