@@ -1,29 +1,26 @@
 import clsx from "clsx";
-import { useSearchParams } from "react-router";
 import { MdOutlineSwapVert } from "react-icons/md";
-import { isField } from "@/lib/utils";
 import * as DropdownMenu from "@/components/ui/dropdown-menu";
 import { ProductOrderByItem } from "@/components/products/product-orderby-item";
+import { useCustomParams } from "@/hooks/useCustomParams";
+import { SearchParams } from "@/interfaces";
 
 const fields = ["Nombre", "Precio", "Categoría", "Disponibilidad"];
- 
+
+interface State extends Pick<SearchParams, "field" | "order"> {}
+
 export function ProductOrderBy() {
-    const [ searchParams, setSearchParams ] = useSearchParams();
+    const { params, updateParams } = useCustomParams<State>({ needParams: ["field", "order"] });
 
     const handlerClick = (name: string) => {
-        const field = searchParams.get('field');
-        const orderby = searchParams.get('order');
+        if (name === params!.field && !params?.order) return;
 
-        if (isField(field!, searchParams) && !orderby) return;
-
-        setSearchParams(() => {
-            const orderSelect = orderby !== "ASC" ? "ASC" : "DESC";
-            
-            searchParams.set("field", name.toLowerCase());
-            searchParams.set("order", orderSelect);
-
-            return searchParams;
-        })
+        const orderSelect = params?.order !== "ASC" ? "ASC" : "DESC";
+        
+        updateParams([
+            { param: "field", value: name.toLowerCase() },
+            { param: "order", value: orderSelect }
+        ]);
     }
 
     return (
@@ -46,15 +43,15 @@ export function ProductOrderBy() {
                             className={clsx(
                                 "text-white font-semibold",
                                 {
-                                    "focus:bg-p_gray_600 focus:bg-opacity-30 focus:text-white": !isField(field, searchParams),
-                                    "bg-p_rose_900 bg-opacity-15 text-p_rose_600 focus:bg-p_rose_900 focus:bg-opacity-15 focus:text-p_rose_600": isField(field, searchParams),
+                                    "focus:bg-p_gray_600 focus:bg-opacity-30 focus:text-white": params?.field !== field.toLowerCase(),
+                                    "bg-p_rose_900 bg-opacity-15 text-p_rose_600 focus:bg-p_rose_900 focus:bg-opacity-15 focus:text-p_rose_600": params?.field === field.toLowerCase(),
                                 }
                             )} 
                         >
                            <ProductOrderByItem 
                                 field={field} 
-                                isField={isField(field, searchParams)}
-                                orderDSC={searchParams.get('order') === "DESC"}
+                                isField={params?.field === field.toLowerCase()}
+                                orderDSC={params?.order === "DESC"}
                             />
                         </DropdownMenu.Item>
                     ))

@@ -1,37 +1,35 @@
 import clsx from "clsx";
 import { useQuery } from "@tanstack/react-query";
-import { useSearchParams } from "react-router";
 import { pizzetonApi } from "@/api/api-conifg";
+import { useCustomParams } from "@/hooks/useCustomParams";
 import { TableSkeleton } from "@/components/products/product-skeletons";
 import { ProductOptions } from "@/components/products/product-options";
 import { ProductCategory } from "@/components/products/product-category";
+import { ProductOrderByItem } from "@/components/products/product-orderby-item";
 import { ProductDisponibility } from "@/components/products/product-disponibility";
 import { TableRow, TableBody, TableCell, Table, TableHead, TableHeader } from "@/components/ui/table";
-import type { Product } from "@/interfaces";
-import { ProductOrderByItem } from "./product-orderby-item";
+import type { Product, SearchParams } from "@/interfaces";
   
-
 export function ProductsTable() {
-    const [ params ] = useSearchParams();
-
+    const { params } = useCustomParams<SearchParams>({ needParams: ["page", "search", "category", "order", "field", "stock"] });
+    
     const { isPending, error, data } = useQuery({
-        queryKey: [
-            'products', 
-            { 
-                page: params.get('page'), 
-                search: params.get('search'),
-            }
-        ],
+        queryKey: [ 'products', { params } ],
         queryFn: async() => {
-            const page = Number(params.get('page') || 0);
-            const search = params.get('search');
-            const category = params.get('category');
-
-            const url = search ? `/products?search=${search}&` : "/products?"
+            const page = Number(params?.page || 0);
+            const url = params?.search ? `/products?search=${params?.search}&` : "/products?"
             
-            if (category) {
-                url.concat(`category=${category}&`)
-            } 
+            if (params?.category) {
+                url.concat(`category=${params.category}&`);
+            }
+
+            if (params?.field && params.order) {
+                // url.concat(`field=${params.field}&order=${params.order}&`);
+            }
+
+            if (params?.stock) {
+                // url.concat(`stock=${params.stock}`)
+            }
 
             const { data } = await pizzetonApi.get<Product[]>(`${url}limit=5&offset=${page * 5}`);
             return data
@@ -54,32 +52,32 @@ export function ProductsTable() {
                     <ProductOrderByItem 
                         field={"Producto"} 
                         table
-                        orderDSC={params.get("order") === "DESC"} 
-                        isField={params.get('field') === "nombre"}
+                        orderDSC={params?.order === "DESC"} 
+                        isField={params?.field === "nombre"}
                     />    
                 </TableHead>
                 <TableHead>
                     <ProductOrderByItem 
                         field={"Precio"} 
                         table
-                        orderDSC={params.get("order") === "DESC"} 
-                        isField={params.get('field') === "precio"}
+                        orderDSC={params?.order === "DESC"} 
+                        isField={params?.field === "precio"}
                     />    
                 </TableHead>
                 <TableHead>
                     <ProductOrderByItem 
                         field={"Categoría"} 
                         table
-                        orderDSC={params.get("order") === "DESC"} 
-                        isField={params.get('field') === "categoría"}
+                        orderDSC={params?.order === "DESC"} 
+                        isField={params?.field === "categoría"}
                     />        
                 </TableHead>
                 <TableHead>
                     <ProductOrderByItem 
                         field={"Disponibilidad"} 
                         table
-                        orderDSC={params.get("order") === "DESC"} 
-                        isField={params.get('field') === "disponibilidad"}
+                        orderDSC={params?.order === "DESC"} 
+                        isField={params?.field === "disponibilidad"}
                     />    
                 </TableHead>
                 <TableHead className="w-0"/>

@@ -18,7 +18,3 @@ export function createPages(data: number) {
     total: pages
   }
 }
-
-export function isField(field: string, searchParams: URLSearchParams) {
-  return field.toLowerCase() === searchParams.get('field');
-} 

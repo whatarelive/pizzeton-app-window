@@ -19,6 +19,15 @@ export interface Route {
     icon: IconType;
 }
 
+export interface SearchParams {
+    page: string;
+    search: string;
+    category: string;
+    order: string;
+    field: string;
+    stock: string;
+}
+
 export interface Product {
     id: string;
     title: string,

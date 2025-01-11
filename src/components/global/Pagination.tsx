@@ -1,31 +1,36 @@
 import { useQuery } from "@tanstack/react-query";
-import { useSearchParams } from "react-router";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import { pizzetonApi } from "@/api/api-conifg";
 import { createPages } from "@/lib/utils";
 import { PaginationSkeleton } from "@/components/global/Skeletons";
 import { PaginationLink } from "@/components/ui/pagination";
-import type { NavigateProps } from "@/interfaces";
+import type { NavigateProps, SearchParams } from "@/interfaces";
+import { useCustomParams } from "@/hooks/useCustomParams";
+
+interface State extends Omit<SearchParams, "field" | "order"> {}
 
 export function Pagination() {
-  const [ searchParams, setSearchParams ] = useSearchParams();
+  const { params, updateParams } = useCustomParams<State>({ needParams: ["page", "search", "category", "stock",] });
 
   const { isPending, data } = useQuery({
-    queryKey: [
+    queryKey: [ 
       'productPage', 
       { 
-        search: searchParams.get('search'), 
-        category: searchParams.get('category')
-      }
+        search: params?.search,
+        category: params?.category,
+        stock: params?.stock,
+      } 
     ],
     queryFn: async() => {
-      const search = searchParams.get('search');
-      const category = searchParams.get('category');
-      const url = search ? `/products/size?search=${search}&` : "/products/size?"
+      const url = params?.search ? `/products/size?search=${params.search}&` : "/products/size?"
       
-      if (category) {
-        url.concat(`category=${category}&`)
+      if (params?.category) {
+        url.concat(`category=${params.category}&`)
       } 
+
+      if (params?.stock) {
+        // url.concat(`stock=${params.stock}`);
+      }
  
       const { data } = await pizzetonApi.get<number>(url);
     
@@ -38,7 +43,7 @@ export function Pagination() {
   }
 
   const navigate = ({ destiny, num }: NavigateProps) => {
-    const current = Number(searchParams.get('page')) || 0;
+    const current = Number(params?.page) || 0;
     let page = current;
 
     if (destiny === 'next' && current < data!.total) {
@@ -49,10 +54,9 @@ export function Pagination() {
       page = num-1;
     }
 
-    setSearchParams(() => { 
-      searchParams.set('page', page.toString());
-      return searchParams;      
-    })
+    updateParams([
+      { param: "page", value: page.toString() }
+    ]);
   }
 
   return (
@@ -74,7 +78,7 @@ export function Pagination() {
         {
           data?.pages.map((num) => (
             <li key={num}>
-              <PaginationLink onClick={() => navigate({ num })} isActive={Number(searchParams.get('page')) === num-1}>
+              <PaginationLink onClick={() => navigate({ num })} isActive={Number(params?.page) === num-1}>
                 { num }
               </PaginationLink>
             </li>

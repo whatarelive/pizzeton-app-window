@@ -1,8 +1,9 @@
 import clsx from "clsx";
-import { useSearchParams } from "react-router";
 import { MdFilterList, MdDinnerDining, MdIcecream, MdLocalPizza, MdSportsBar } from "react-icons/md";
+import { useCustomParams } from "@/hooks/useCustomParams";
 import * as DropdownMenu from "@/components/ui/dropdown-menu";
-import { ProductDisponibility } from "./product-disponibility";
+import { ProductDisponibility } from "@/components/products/product-disponibility";
+import { SearchParams } from "@/interfaces";
 
 const categories = [
   {
@@ -23,28 +24,20 @@ const categories = [
   }
 ]
 
+interface State extends Pick<SearchParams, "category" | "stock"> {}
+
 export function ProductFilters() {
-    const [ searchParams, setSearchParams ] = useSearchParams();
+    const { params, updateParams } = useCustomParams<State>({ needParams: ["category", "stock"] });
 
     const handlerClick = (name: string) => {
-        const category = searchParams.get('category');
-
-        if (category === name) return;
-
-        setSearchParams(() => {
-            searchParams.set("category", name);
-            return searchParams;
-        })
+        if (params?.category !== name) {
+            updateParams([{ param: "category", value: name }])
+        }
     }
 
     const handlerCheck = () => {
-        const stock = searchParams.get('stock');
-
-        setSearchParams(() => {
-            const newStock = stock === "true" ? "false" : "true";
-            searchParams.set("stock", newStock)
-            return searchParams;
-        })
+        const newStock = params?.stock === "true" ? "false" : "true";
+        updateParams([{ param: "stock", value: newStock }]);
     }
 
     return (
@@ -73,8 +66,8 @@ export function ProductFilters() {
                                         className={clsx(
                                             "text-white text-opacity-75 rounded-md",
                                             {
-                                                "bg-p_gray_600 bg-opacity-30 text-white focus:bg-p_rose_600 focus:bg-opacity-20 focus:text-p_rose_600": searchParams.get("category") !== categ.label,
-                                                "bg-p_rose_600 bg-opacity-15 font-semibold text-p_rose_600 focus:bg-p_rose_600 focus:bg-opacity-20 focus:text-p_rose_600": searchParams.get("category") === categ.label,
+                                                "bg-p_gray_600 bg-opacity-30 text-white focus:bg-p_rose_600 focus:bg-opacity-20 focus:text-p_rose_600": params?.category !== categ.label,
+                                                "bg-p_rose_600 bg-opacity-15 font-semibold text-p_rose_600 focus:bg-p_rose_600 focus:bg-opacity-20 focus:text-p_rose_600": params?.category === categ.label,
                                             }
                                         )}
                                         >
@@ -100,7 +93,7 @@ export function ProductFilters() {
                         </DropdownMenu.Label>
 
                         <ProductDisponibility 
-                            stock={searchParams.get('stock') === "true"} 
+                            stock={params?.stock === "true"} 
                             onClick={handlerCheck}
                         />
                     </div>
