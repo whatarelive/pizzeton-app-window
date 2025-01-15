@@ -22,7 +22,7 @@ export function TableSkeleton() {
                 </TableRow>
             </TableHeader>
             <TableBody>
-                {  [1, 2, 3, 4, 5].map((product) => (
+                {  [1, 2, 3, 4, 5, 6, 7].map((product) => (
                     <TableRow key={product}>
                         <TableCell className="flex gap-4">
                             <Skeleton className="h-16 w-16 rounded-2xl" />

@@ -29,8 +29,8 @@ export let win: BrowserWindow | null
 function createWindow() {
   win = new BrowserWindow({
     icon: path.join(process.env.VITE_PUBLIC, 'logo.svg'),
-    width: 1280,
-    height: 720,
+    width: 1600,
+    height: 900,
     paintWhenInitiallyHidden: false,
     center: true,
     resizable: false,

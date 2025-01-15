@@ -31,7 +31,7 @@ export function ProductsTable() {
                 // url.concat(`stock=${params.stock}`)
             }
 
-            const { data } = await pizzetonApi.get<Product[]>(`${url}limit=5&offset=${page * 5}`);
+            const { data } = await pizzetonApi.get<Product[]>(`${url}limit=7&offset=${page * 7}`);
             return data
         }
     })

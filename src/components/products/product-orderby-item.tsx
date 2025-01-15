@@ -12,7 +12,7 @@ interface Props {
 
 export function ProductOrderByItem({ className, isField, field, orderDSC, table } : Props) {
     return (
-        <div className="flex gap-1">
+        <div className="flex gap-2">
             <MdArrowUpward className={cn(
                 "transition-all min-w-6 min-h-6",
                 {

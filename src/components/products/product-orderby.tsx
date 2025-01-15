@@ -44,7 +44,7 @@ export function ProductOrderBy() {
                                 "text-white font-semibold",
                                 {
                                     "focus:bg-p_gray_600 focus:bg-opacity-30 focus:text-white": params?.field !== field.toLowerCase(),
-                                    "bg-p_rose_900 bg-opacity-15 text-p_rose_600 focus:bg-p_rose_900 focus:bg-opacity-15 focus:text-p_rose_600": params?.field === field.toLowerCase(),
+                                    "bg-p_rose_600 bg-opacity-30 text-base text-p_rose_600 focus:bg-p_rose_600 focus:bg-opacity-45 focus:text-p_rose_600": params?.field === field.toLowerCase(),
                                 }
                             )} 
                         >
