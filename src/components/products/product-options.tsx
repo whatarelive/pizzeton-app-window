@@ -1,13 +1,14 @@
 import { useNavigate } from "react-router";
-import { MdMoreVert, MdEdit, MdDelete } from "react-icons/md"
-import { productDelete } from "@/actions/products";
+import { MdMoreVert, MdEdit } from "react-icons/md";
+import { ProductDeleteModal } from "@/components/products/product-modal-delete";
 import * as DropdownMenu from "@/components/ui/dropdown-menu";
 
 interface Props {
     productId: string;
+    name: string;
 } 
 
-export function ProductOptions({ productId }: Props) {
+export function ProductOptions({ productId, name }: Props) {
     const navigate = useNavigate();
 
     return (
@@ -27,13 +28,8 @@ export function ProductOptions({ productId }: Props) {
                     <MdEdit className="min-w-5 min-h-5"/>
                     <span>Editar</span>
                 </DropdownMenu.Item>
-                <DropdownMenu.Item 
-                    onClick={() => productDelete(productId)}
-                    className="text-p_rose_900 font-medium focus:bg-p_gray_600 focus:bg-opacity-30 focus:text-p_rose_900" 
-                >
-                    <MdDelete className="min-w-5 min-h-5"/>
-                    <span>Eliminar</span>
-                </DropdownMenu.Item>
+
+                <ProductDeleteModal id={productId} name={name}/>
             </DropdownMenu.Content>
         </DropdownMenu.Root>
     )

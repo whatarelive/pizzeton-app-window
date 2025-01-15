@@ -130,7 +130,7 @@ export function ProductsTable() {
                     </TableCell>
                     
                     <TableCell>
-                        <ProductOptions productId={product.id}/>
+                        <ProductOptions productId={product.id} name={product.title}/>
                     </TableCell>
                 </TableRow>
             ))}
