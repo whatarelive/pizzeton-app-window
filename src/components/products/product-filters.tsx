@@ -64,10 +64,10 @@ export function ProductFilters() {
                                         key={index} 
                                         onClick={() => handlerClick(categ.label)}
                                         className={clsx(
-                                            "text-white text-opacity-75 rounded-md",
+                                            "rounded-md font-semibold",
                                             {
-                                                "bg-p_gray_600 bg-opacity-30 text-white focus:bg-p_rose_600 focus:bg-opacity-20 focus:text-p_rose_600": params?.category !== categ.label,
-                                                "bg-p_rose_600 bg-opacity-15 font-semibold text-p_rose_600 focus:bg-p_rose_600 focus:bg-opacity-20 focus:text-p_rose_600": params?.category === categ.label,
+                                                "bg-p_gray_600 bg-opacity-30 text-p_gray_400 focus:bg-p_rose_300 focus:bg-opacity-30 focus:text-p_rose_300": params?.category !== categ.label,
+                                                "bg-p_rose_300 bg-opacity-30 text-p_rose_300 focus:bg-p_rose_300 focus:bg-opacity-30 focus:text-p_rose_300": params?.category === categ.label,
                                             }
                                         )}
                                         >
