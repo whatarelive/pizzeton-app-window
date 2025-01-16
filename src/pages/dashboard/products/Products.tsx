@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { ProductsTable } from "@/components/products/product-table";
 import { ProductOrderBy } from "@/components/products/product-orderby";
 import { ProductFilters } from "@/components/products/product-filters";
+import { ProductDeleteModal } from "@/components/products/product-modal-delete";
 
 export default function Products() {
   return (
@@ -39,6 +40,9 @@ export default function Products() {
     
       {/* Paginizacion de la tabla */}
       <Pagination/>
+
+      {/* Modal para confirmar eliminación un producto */}
+      <ProductDeleteModal/>
     </div>
   )
 }

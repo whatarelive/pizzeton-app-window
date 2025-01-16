@@ -17,10 +17,12 @@ export function ProductsTable() {
         queryKey: [ 'products', { params } ],
         queryFn: async() => {
             const page = Number(params?.page || 0);
-            const url = params?.search ? `/products?search=${params?.search}&` : "/products?"
+            let url = params?.search ? `/products?search=${params?.search}&` : "/products?"
             
+            console.log(params);
+
             if (params?.category) {
-                url.concat(`category=${params.category}&`);
+                url = `${url}category=${params.category}&`;
             }
 
             if (params?.field && params.order) {
@@ -30,6 +32,9 @@ export function ProductsTable() {
             if (params?.stock) {
                 // url.concat(`stock=${params.stock}`)
             }
+
+            console.log(url);
+            
 
             const { data } = await pizzetonApi.get<Product[]>(`${url}limit=7&offset=${page * 7}`);
             return data
