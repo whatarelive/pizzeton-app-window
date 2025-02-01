@@ -34,10 +34,10 @@ export function SideMenu() {
         {/* Open Menú Button */}
         <IoIosArrowForward size={40} onClick={change} 
           className={clsx(
-            'absolute top-[99px] p-2 rounded-full text-white bg-p_gray_900 hover:bg-p_rose_600 hover:shadow-sm hover:shadow-p_gray_600 transition-all duration-[600ms]',
+            'absolute top-[99px] p-2 rounded-full text-white bg-p_gray_900 hover:bg-p_rose_600 hover:shadow-sm hover:shadow-p_gray_600 transition-all',
             {
-              'rotate-180 left-[220px]' : isOpen, 
-              'left-[75px]' : !isOpen
+              'rotate-180 left-[230px] duration-[640ms]' : isOpen, 
+              'rotate-0 left-[75px] duration-[700ms]' : !isOpen
             }
           )}
         />

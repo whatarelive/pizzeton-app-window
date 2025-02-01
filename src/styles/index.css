@@ -14,7 +14,7 @@
 
 @layer base {
   :root {
-
+    user-select: none;
     --radius: 0.5rem;
   }
 }

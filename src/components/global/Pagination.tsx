@@ -22,10 +22,10 @@ export function Pagination() {
       } 
     ],
     queryFn: async() => {
-      const url = params?.search ? `/products/size?search=${params.search}&` : "/products/size?"
+      let url = params?.search ? `/products/size?search=${params.search}&` : "/products/size?"
       
       if (params?.category) {
-        url.concat(`category=${params.category}&`)
+        url = `${url}category=${params.category}`
       } 
 
       if (params?.stock) {
