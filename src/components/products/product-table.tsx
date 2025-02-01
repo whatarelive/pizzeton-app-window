@@ -1,26 +1,15 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import clsx from "clsx";
-import { useEffect } from "react";
+import { useProducts } from "@/hooks/useProduct";
 import { TableSkeleton } from "@/components/products/product-skeletons";
 import { ProductOptions } from "@/components/products/product-options";
 import { ProductCategory } from "@/components/products/product-category";
 import { ProductOrderByItem } from "@/components/products/product-orderby-item";
 import { ProductDisponibility } from "@/components/products/product-disponibility";
 import { TableRow, TableBody, TableCell, Table, TableHead, TableHeader } from "@/components/ui/table";
-import { useProductStore } from "@/store/ProductStore";
-import { useCustomParams } from "@/hooks/useCustomParams";
-import type { SearchParams } from "@/interfaces";
   
 export function ProductsTable() {
-    const { params } = useCustomParams<SearchParams>({ needParams: ["order", "field"] });
-    const { isPending, error, productsForPage, currentPage, products, getProducts, paginateProducts } = useProductStore();
-
-    useEffect(() => {
-        getProducts();
-    }, []);
-    
-    useEffect(() => {
-        paginateProducts(currentPage);
-    }, [products, currentPage])
+    const { isPending, error, params, productsForPage } = useProducts();
 
     if (isPending) {
         return <TableSkeleton/>

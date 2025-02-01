@@ -9,7 +9,6 @@ export function Search() {
     const handleSearch = useDebouncedCallback(({ target }: React.ChangeEvent<HTMLInputElement>) => {
       setSearchParams(() => {
         searchParams.set('search', target.value.trim());
-        searchParams.set('page', "0");
         return searchParams;
       });
     }, 1500); 

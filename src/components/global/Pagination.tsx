@@ -1,24 +1,37 @@
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
-import { PaginationSkeleton } from "@/components/global/Skeletons";
+import { useCustomParams } from "@/hooks/useCustomParams";
 import { PaginationLink } from "@/components/ui/pagination";
-import { useProductStore } from "@/store/ProductStore";
-import type { NavigateProps } from "@/interfaces";
+import { PaginationSkeleton } from "@/components/global/Skeletons";
+import type { NavigateProps, SearchParams } from "@/interfaces";
 
-export function Pagination() {
-  const { isPending, pages, currentPage, totalPages, paginateProducts } = useProductStore();
+interface Props {
+  pages: number[];
+  totalPages: number;
+  isPending: boolean;
+}
+
+export function Pagination({ pages, totalPages, isPending }: Props) {
+  const { params, updateParams } = useCustomParams<SearchParams>({ needParams: ["page"] });
 
   if (isPending) {
     return <PaginationSkeleton/>
   }
 
   const navigate = ({ destiny, num }: NavigateProps) => {
-    if (destiny === 'next' && currentPage < totalPages) {
-      paginateProducts(currentPage + 1);
-    } else if(destiny === 'previous' && currentPage > 0 ) {
-      paginateProducts(currentPage - 1);
+    const currentPage = Number(params?.page || 0);
+    let page = currentPage;
+
+    if (destiny === 'next' && currentPage < totalPages-1) {
+      page = currentPage + 1;
+    } else if(destiny === 'previous' && currentPage > 0) {
+      page = currentPage - 1;
     } else if(num) {
-      paginateProducts(num - 1);
+      page =num - 1;
     }
+
+    updateParams([
+      { param: "page", value: page.toString() }
+    ]);
   }
 
   return (
@@ -40,7 +53,7 @@ export function Pagination() {
         {
           pages.map((num) => (
             <li key={num}>
-              <PaginationLink onClick={() => navigate({ num })} isActive={currentPage === num-1}>
+              <PaginationLink onClick={() => navigate({ num })} isActive={Number(params?.page || 0) === num-1}>
                 { num }
               </PaginationLink>
             </li>

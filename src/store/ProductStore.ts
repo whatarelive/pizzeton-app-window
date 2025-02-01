@@ -1,15 +1,14 @@
 import { create } from "zustand";
 import { isAxiosError, type AxiosError } from "axios";
+import { createPages } from "@/lib/utils";
 import { pizzetonApi } from "@/api/api-conifg";
 import type { Product } from "@/interfaces";
-import { createPages } from "@/lib/utils";
 
 interface State {
     products: Product[] | null;
     productsForPage: Product[] | null;
     pageSize: number;
     pages: number[];
-    currentPage: number;
     totalPages: number;
     isPending: boolean;
     error: AxiosError | null;
@@ -53,7 +52,7 @@ export const useProductStore = create<State>()((set, get) => ({
         const productsForPage = products.slice(startIndex, endIndex);
         const { pages, total } = createPages(products?.length);
     
-        set({ productsForPage, pages, totalPages: total, currentPage: page });
+        set({ productsForPage, pages, totalPages: total });
     },
 
     orderProductsBy(field, order) {
@@ -70,7 +69,7 @@ export const useProductStore = create<State>()((set, get) => ({
             const products = get().products?.filter((product) => product.category === category);
             const { pages, total } = products ? createPages(products?.length) : { pages: [], total: 0 };
         
-            set({ products, pages, totalPages: total, currentPage: 0 });
+            set({ products, pages, totalPages: total });
         }
     },
 
@@ -79,7 +78,7 @@ export const useProductStore = create<State>()((set, get) => ({
             const products = get().products?.filter((product) => product.title.toLowerCase().includes(search.toLowerCase()));
             const { pages, total } = products ? createPages(products?.length) : { pages: [], total: 0 };
 
-            set({ products, pages, totalPages: total, currentPage: 0 });
+            set({ products, pages, totalPages: total });
         }
     },
 }))

@@ -1,4 +1,5 @@
 import { MdListAlt, MdAdd } from "react-icons/md";
+import { useProductStore } from "@/store/ProductStore";
 import { Pagination } from "@/components/global/Pagination";
 import { Search } from "@/components/global/Search";
 import { Button } from "@/components/ui/button";
@@ -8,6 +9,8 @@ import { ProductFilters } from "@/components/products/product-filters";
 import { ProductDeleteModal } from "@/components/products/product-modal-delete";
 
 export default function Products() {
+  const { isPending, pages, totalPages } = useProductStore();
+
   return (
     <div className="flex flex-col px-16 py-10 justify-between gap-6 h-full">
       <div className="flex flex-col gap-6">  
@@ -40,7 +43,7 @@ export default function Products() {
         <ProductsTable/>
       </div>
       {/* Paginizacion de la tabla */}
-      <Pagination/>
+      <Pagination isPending={isPending} pages={pages} totalPages={totalPages}/>
 
       {/* Modal para confirmar eliminación un producto */}
       <ProductDeleteModal/>
