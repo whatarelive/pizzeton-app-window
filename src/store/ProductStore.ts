@@ -15,7 +15,7 @@ interface State {
     getProducts: () => void;
     paginateProducts: (page: number) => void;
     orderProductsBy: (field: keyof Product, order: "ASC" | "DESC") => void;
-    filterProductsWithCategory: (category: string) => void;
+    filterProductsWithCategory: (category: string, products: Product[]) => void;
     filterProductsWithSearch: (search: string) => void;
 }
 
@@ -64,12 +64,12 @@ export const useProductStore = create<State>()((set, get) => ({
         set({ products });
     },
 
-    filterProductsWithCategory(category) {
+    filterProductsWithCategory(category, products) {
         if (category) {
-            const products = get().products?.filter((product) => product.category === category);
-            const { pages, total } = products ? createPages(products?.length) : { pages: [], total: 0 };
+            const productsF = products.filter((product) => product.category === category);
+            const { pages, total } = productsF ? createPages(productsF?.length) : { pages: [], total: 0 };
         
-            set({ products, pages, totalPages: total });
+            set({ products: productsF, pages, totalPages: total });
         }
     },
 

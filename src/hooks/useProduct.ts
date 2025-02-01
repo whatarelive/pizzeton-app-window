@@ -1,15 +1,22 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useProductStore } from "@/store/ProductStore";
 import { useCustomParams } from "@/hooks/useCustomParams";
-import type { SearchParams } from "@/interfaces";
+import type { Product, SearchParams } from "@/interfaces";
 
 export function useProducts() {
-    const { params } = useCustomParams<SearchParams>({ needParams: ["page", "search", "order", "field"] });
-    const { isPending, error, productsForPage, products, getProducts, filterProductsWithSearch, paginateProducts } = useProductStore();
+    const oldProduct = useRef<Product[]>(null);
+
+    const { params } = useCustomParams<SearchParams>({ needParams: ["page", "search", "category", "order", "field"] });
+    
+    const { 
+        isPending, error, productsForPage, products, 
+        getProducts, filterProductsWithSearch, filterProductsWithCategory, paginateProducts 
+    } = useProductStore();
 
     useEffect(() => {
         getProducts();
+        oldProduct.current = products;
     }, []);
     
     useEffect(() => {
@@ -27,6 +34,17 @@ export function useProducts() {
         }
 
     }, [params?.search]);
+    
+    useEffect(() => {
+        if (params?.category) {
+            filterProductsWithCategory(params.category, oldProduct.current!);
+            
+        } else {
+            getProducts();
+            oldProduct.current = products;
+        }
+
+    }, [params?.category]);
     
     return { 
         isPending,
