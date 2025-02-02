@@ -7,10 +7,10 @@ import { SearchParams } from "@/interfaces";
 
 const fields = ["Nombre", "Precio", "Categoría", "Disponibilidad"];
 
-interface State extends Pick<SearchParams, "field" | "order"> {}
+interface State extends Pick<SearchParams, "page" | "field" | "order"> {}
 
 export function ProductOrderBy() {
-    const { params, updateParams } = useCustomParams<State>({ needParams: ["field", "order"] });
+    const { params, updateParams } = useCustomParams<State>({ needParams: ["page", "field", "order"] });
 
     const handlerClick = (name: string) => {
         if (name === params!.field && !params?.order) return;
@@ -19,7 +19,8 @@ export function ProductOrderBy() {
         
         updateParams([
             { param: "field", value: name.toLowerCase() },
-            { param: "order", value: orderSelect }
+            { param: "order", value: orderSelect },
+            { param: "page", value: "0" }
         ]);
     }
 

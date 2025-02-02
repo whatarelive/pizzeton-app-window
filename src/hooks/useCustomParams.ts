@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router";
 
@@ -31,7 +32,6 @@ export function useCustomParams<T>({ needParams }: Props<T>) {
 
         setParams(newParams);
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [searchParams])
     
     const updateParams = (needUpdate: Update<T>[]) => {
