@@ -1,7 +1,7 @@
 import { useSearchParams } from "react-router";
 import { useDebouncedCallback } from "use-debounce";
 import { MdOutlineSearch } from "react-icons/md";
-import { Input } from "@/components/ui/input";
+import { InputWithIcon } from "@/components/ui/input";
 
 export function Search() {
     const [ searchParams, setSearchParams ] = useSearchParams();
@@ -14,7 +14,7 @@ export function Search() {
     }, 1500); 
 
     return (
-        <Input 
+        <InputWithIcon
             type="text" 
             name="search" 
             placeholder="¿Qué estás buscando?" 
@@ -22,6 +22,6 @@ export function Search() {
             onChange={handleSearch}
         >
             <MdOutlineSearch size={24} color="#333" className="min-w-6"/>
-        </Input>
+        </InputWithIcon>
     )
 }
