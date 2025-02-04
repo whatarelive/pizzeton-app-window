@@ -18,6 +18,7 @@ export default {
 				p_gray_900: '#333333',
 				p_rose_300: '#ff866b',
 				p_rose_600: '#E2583A',
+				p_rose_700: '#FE785A',
 				p_rose_900: '#CF404A',
 				p_violet: '#9E41CA',
 				p_green: '#4B9F61',

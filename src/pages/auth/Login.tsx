@@ -1,5 +1,8 @@
 import { Logo } from "@/components/global/Logo";
+import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
+import { NavLink } from "react-router";
 
 export default function Login() {
   return (
@@ -18,15 +21,15 @@ export default function Login() {
 
       {/* Logo Section */}
       <section className="z-50 flex flex-col h-min justify-center items-center gap-3 mt-[52px]">
-        <Logo color="#ff866b" className="w-20 h-auto"/>
+        <Logo color="#FE785A" className="w-20 h-auto"/>
         
-        <h1 className="text-3xl font-black uppercase text-p_rose_300">
+        <h1 className="text-3xl font-black uppercase text-p_rose_700">
           Pizzeton D'Guti
         </h1>
       </section>
 
       {/* Form Section */}
-      <section className="z-50 flex flex-col h-min gap-6 p-8 mt-12">
+      <section className="z-50 flex flex-col max-w-[590px] h-min gap-6 p-8 mt-12">
         <div className="flex flex-col gap-3">
           <h2 className="text-5xl font-bold">
             Bienvenido de nuevo!
@@ -53,12 +56,22 @@ export default function Login() {
             className="bg-[#3B3B3B80] placeholder:text-p_gray_400 text-p_gray_200 border border-[#4F4F4F]"
           />
 
-          <div>
-            <Input 
-              label="" 
-              type="checkbox"
-            />
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-2">
+              <Checkbox id="terms" className="bg-[#3B3B3B80] border-[#4F4F4F]"/>
+              <label htmlFor="terms" className="text-sm font-normal text-p_gray_400">
+                Recordar inicio de sesión
+              </label>
+            </div>
+
+            <NavLink to="" className="text-sm font-medium text-p_rose_700 hover:text-p_rose_600 underline">
+              ¿Olvidate tu contraseña?
+            </NavLink>
           </div>
+
+          <Button size="lg" className="text-md bg-p_rose_700 hover:bg-p_rose_600">
+            Iniciar Sesión
+          </Button>
         </form>
       </section>
     </div>
