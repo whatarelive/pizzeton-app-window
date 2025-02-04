@@ -1,8 +1,8 @@
-import { Logo } from "@/components/global/Logo";
+import { NavLink } from "react-router";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
-import { NavLink } from "react-router";
+import { Logo } from "@/components/global/Logo";
 
 export default function Login() {
   return (
